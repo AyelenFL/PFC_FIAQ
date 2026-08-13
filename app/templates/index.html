@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}FIAQ — Modelo de IA{% endblock %}
+
+{% block content %}
+
+    <!-- 
+         SECCIÓN HERO: Formulario central
+     -->
+    <section class="hero-section" aria-labelledby="form-title">
+
+        <!-- Tarjeta central del formulario -->
+        <div id="form-container" class="form-card">
+
+            <!-- Título -->
+            <h1 id="form-title">
+                Predecir la Capacidad<br>
+                <span class="title-accent">Antioxidante</span>
+            </h1>
+
+            <p id="form-subtitle">
+                Ingresá una molécula en formato <strong>SMILES</strong>, <strong>nro. CAS</strong> o su <strong>nombre en inglés</strong>
+                para obtener la predicción del modelo de IA.
+            </p>
+
+            <!-- Botón de ejemplo -->
+            <div class="example-container">
+                <span class="example-label">Ejemplo:</span>
+                <button type="button" id="example-btn" class="btn btn-secondary">
+                    <code>CC(=O)Oc1ccccc1C(=O)O</code>
+                    <span class="example-hint">Aspirina</span>
+                </button>
+            </div>
+
+            <!-- Formulario de predicción -->
+            <form id="prediction-form" novalidate>
+                <div class="input-group">
+                    <input
+                        type="text"
+                        id="smiles-input"
+                        name="smiles"
+                        placeholder="Ej: CC(=O)Oc1ccccc1C(=O)O"
+                        autocomplete="off"
+                        spellcheck="false"
+                        aria-label="Notación SMILES de la molécula"
+                        aria-describedby="result-container"
+                    >
+                    <button type="submit" id="submit-button" class="btn btn-primary">
+                        <span class="btn-text">Predecir</span>
+                        <span id="spinner" class="spinner hidden" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- 
+                 RESULTADO 
+             -->
+            <div id="result-container" role="region" aria-live="polite" aria-label="Resultado de predicción">
+                <!-- JS inyecta contenido aquí -->
+            </div>
+
+        </div><!-- /.form-card -->
+
+        <!-- 
+             TERMÓMETRO
+             Oculto por defecto, animado con Anime.js.
+         -->
+        <div id="thermometer-panel" class="thermometer-panel hidden" aria-label="Escala de capacidad antioxidante" role="img">
+
+            <p class="thermo-title">Escala TEAC</p>
+
+            <!-- SVG del termómetro vertical -->
+            <div class="thermo-svg-wrap">
+                <svg id="thermo-svg" viewBox="0 0 80 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+                    <!-- Gradiente del relleno: rojo (bajo) → amarillo → verde (alto) -->
+                    <defs>
+                        <linearGradient id="thermo-grad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%"   stop-color="#00C853"/>
+                            <stop offset="33%"  stop-color="#FFD600"/> <!-- 40% -->
+                            <stop offset="100%" stop-color="#FF1744"/>
+                        </linearGradient>
+                        <!-- Clip del relleno animado -->
+                        <clipPath id="thermo-clip">
+                            <!-- Este rect sube desde abajo (y cambia por JS/Anime.js) -->
+                            <rect id="thermo-fill-clip" x="0" y="280" width="80" height="40"/>
+                        </clipPath>
+                    </defs>
+
+                    <!-- Tubo del termómetro: fondo gris oscuro. -->
+                    <rect x="28" y="20" width="24" height="240" rx="12" fill="var(--thermo-tube-bg)" stroke="var(--thermo-tube-stroke)" stroke-width="1"/>
+
+                    <!-- Relleno coloreado  -->
+                    <rect x="28" y="20" width="24" height="240" rx="12" fill="url(#thermo-grad)" clip-path="url(#thermo-clip)"/>
+
+                    <!-- Bulbo inferior: fondo + borde -->
+                    <circle cx="40" cy="275" r="18" fill="url(#thermo-grad)" clip-path="url(#thermo-clip)"/>
+                    <circle cx="40" cy="275" r="18" fill="var(--thermo-tube-bg)" stroke="var(--thermo-tube-stroke)" stroke-width="1"/>
+
+                    <!-- Líneas divisoras de zonas (Baja / Media / Alta) -->
+                    <!-- Zona Baja  -> Media:  y=180 -->
+                    <line x1="28" y1="180" x2="52" y2="180"
+                          stroke="var(--thermo-mark-mid)" stroke-width="1.5"/>
+                    <!-- Zona Media -> Alta:   y=100 -->
+                    <line x1="28" y1="100" x2="52" y2="100"
+                          stroke="var(--thermo-mark-mid)" stroke-width="1.5"/>
+ 
+                    <!-- Marcas menores dentro de cada zona -->
+                    <line x1="42" y1="220" x2="52" y2="220" stroke="var(--thermo-mark)" stroke-width="1"/>
+                    <line x1="42" y1="140" x2="52" y2="140" stroke="var(--thermo-mark)" stroke-width="1"/>
+                    <line x1="42" y1="60"  x2="52" y2="60"  stroke="var(--thermo-mark)" stroke-width="1"/>
+ 
+                    <!-- Etiquetas de zona -->
+                    <text x="55" y="246" font-family="JetBrains Mono, monospace"
+                          font-size="12" fill="var(--thermo-label)">BAJA</text>
+                    <text x="55" y="144" font-family="JetBrains Mono, monospace"
+                          font-size="12" fill="var(--thermo-label)">MEDIA</text>
+                    <text x="55" y="64"  font-family="JetBrains Mono, monospace"
+                          font-size="12" fill="var(--thermo-label)">ALTA</text>
+ 
+                    <!-- Indicador (triángulo): fill via CSS var, empieza oculto -->
+                    <polygon id="thermo-indicator"
+                             points="24,260 14,255 14,265"
+                             fill="var(--thermo-indicator)"
+                             opacity="0"/>
+ 
+                </svg>
+            </div><!-- /.thermo-svg-wrap -->
+ 
+            <!-- Etiqueta de nivel textual -->
+            <p id="thermo-label" class="thermo-level-label"></p>
+ 
+        </div><!-- /#thermometer-panel -->
+ 
+    </section> 
+
+{% endblock %}

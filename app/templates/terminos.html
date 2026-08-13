@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+
+{% block title %}Términos y Condiciones — FIAQ{% endblock %}
+{% block meta_description %}Términos de uso, política de uso aceptable y limitaciones de la herramienta FIAQ.{% endblock %}
+
+{% block content %}
+
+<div class="page-wrapper">
+
+    <!-- 
+         HERO
+     -->
+    <section class="page-hero">
+        <span class="page-badge">Legal</span>
+        <h1 class="page-title">Términos y Condiciones</h1>
+        <p class="page-subtitle">
+            Leé estos términos antes de usar FIAQ.
+            Al utilizar la herramienta, aceptás las condiciones descritas a continuación.
+        </p>
+        <p style="font-size: 0.8rem; color: var(--text-faint); margin-top: 0.5rem;">
+            Última actualización: 1/07/2026
+        </p>
+    </section>
+
+    <!-- 
+         AVISO IMPORTANTE: destacado
+     -->
+    <div class="terms-alert">
+        
+        <div>
+            <strong>FIAQ es una herramienta de apoyo académico y científico.</strong>
+            Las predicciones generadas son orientativas y no reemplazan el análisis
+            experimental ni el criterio de un profesional en Química. No deben utilizarse
+            como base única para decisiones clínicas, farmacológicas o industriales.
+        </div>
+    </div>
+
+    <!-- 
+         SECCIONES
+    -->
+    <div class="terms-body">
+
+        <!-- 1. Naturaleza de la herramienta -->
+        <section class="terms-section">
+            <h2 class="terms-section__title">1. Naturaleza de la herramienta</h2>
+            <p>
+                FIAQ es un sistema de predicción de capacidad antioxidante molecular
+                desarrollado como Proyecto Final de Carrera en el marco de la carrera de
+                Licenciatura en Sistemas de Información de la UNNE. El sistema utiliza un modelo de clasificación
+                basado en Random Forest entrenado sobre un dataset de 169 compuestos
+                con valores experimentales de capacidad antioxidante.
+            </p>
+            <p>
+                Las predicciones producidas por FIAQ representan una estimación
+                computacional basada en patrones estadísticos aprendidos durante el
+                entrenamiento. Su validez está acotada al dominio de aplicabilidad
+                del modelo, es decir, a compuestos estructuralmente similares a los
+                presentes en el dataset de entrenamiento.
+            </p>
+        </section>
+
+        <!-- 2. Uso aceptable -->
+        <section class="terms-section">
+            <h2 class="terms-section__title">2. Uso aceptable</h2>
+            <p>FIAQ está destinada a su uso en contextos académicos y de investigación científica. Se permite su uso para:</p>
+            <ul class="terms-list">
+                <li>Screening inicial de compuestos en etapas exploratorias de investigación.</li>
+                <li>Actividades de enseñanza y aprendizaje en el área de Química.</li>
+                <li>Comparación orientativa de la capacidad antioxidante relativa entre compuestos.</li>
+                <li>Complemento de metodologías experimentales, nunca como reemplazo.</li>
+            </ul>
+            <p>Queda fuera del uso aceptable:</p>
+            <ul class="terms-list terms-list--warning">
+                <li>Usar las predicciones como fundamento único para decisiones clínicas, terapéuticas o industriales.</li>
+                <li>Presentar los resultados de FIAQ como valores experimentales validados sin la correspondiente aclaración.</li>
+                <li>Realizar consultas automatizadas masivas o sistemáticas que puedan comprometer la disponibilidad del servicio.</li>
+                <li>Intentar acceder, modificar o interferir con el modelo, la base de datos o la infraestructura del sistema.</li>
+            </ul>
+        </section>
+
+        <!-- 3. Política de uso de la API de PubChem -->
+        <section class="terms-section">
+            <h2 class="terms-section__title">3. Política de uso — Consultas a PubChem</h2>
+            <p>
+                Cuando el usuario ingresa el nombre común o número CAS de un compuesto,
+                FIAQ consulta la API pública de PubChem (National Institutes of Health, EE.UU.)
+                para obtener la estructura molecular correspondiente. Esta API es un servicio
+                externo gratuito sujeto a sus propios términos de uso, que establecen un
+                límite de <strong>5 solicitudes por segundo</strong> por dirección IP.
+            </p>
+            <p>
+                Para respetar estos límites y optimizar los tiempos de respuesta, FIAQ
+                implementa una caché local que almacena los resultados de consultas previas.
+                De esta forma, compuestos ya consultados anteriormente se resuelven
+                localmente sin generar una nueva solicitud a PubChem.
+            </p>
+            <p>
+                Se solicita a los usuarios evitar el uso automatizado o repetitivo de la
+                herramienta en intervalos muy cortos de tiempo, con el fin de garantizar
+                la disponibilidad del servicio para todos los usuarios y cumplir con las
+                políticas de uso de PubChem. Para consultas masivas o de alta frecuencia,
+                se recomienda acceder directamente a la
+                <a href="https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest" target="_blank" rel="noopener noreferrer">
+                    API de PubChem
+                </a>
+                de forma independiente.
+            </p>
+        </section>
+
+        <!-- 4. Limitaciones del modelo -->
+        <section class="terms-section">
+            <h2 class="terms-section__title">4. Limitaciones del modelo</h2>
+            <ul class="terms-list">
+                <li>
+                    <div>
+                    <strong>Dominio de aplicabilidad: </strong> el modelo fue entrenado con una
+                    familia específica de compuestos. Para moléculas estructuralmente alejadas
+                    de ese dominio, las predicciones pueden ser menos confiables. El porcentaje
+                    de confianza reportado por el sistema es un indicador auxiliar útil en estos casos.
+                    </div>
+                </li>
+                <li>
+                    <div>
+                    <strong>Clasificación relativa:</strong> las categorías Alta, Media y Baja
+                    expresan una clasificación relativa dentro del dominio de entrenamiento,
+                    no valores absolutos de la capacidad antioxidante. La actividad antioxidante
+                    real de un compuesto puede variar según las condiciones del ensayo experimental.
+                    </div>
+                </li>
+                <li>
+                    <div>
+                    <strong>Tamaño del dataset:</strong> el modelo fue entrenado sobre 169 muestras
+                    experimentales. Este tamaño acotado implica que compuestos de familias químicas
+                    no representadas en el dataset pueden ser clasificados con menor precisión.
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 5. Privacidad y datos -->
+        <section class="terms-section">
+            <h2 class="terms-section__title">5. Privacidad y datos</h2>
+            <p>
+                FIAQ no solicita ni almacena información personal de los usuarios.
+                El sistema registra en una base de datos local únicamente los identificadores
+                moleculares consultados —nombre o número CAS— y su correspondiente
+                representación SMILES, con el exclusivo fin de optimizar consultas
+                recurrentes a PubChem. Las predicciones realizadas no son almacenadas
+                ni asociadas a ningún identificador de usuario o sesión.
+            </p>
+        </section>
+
+        <!-- 6. Propiedad intelectual -->
+        <section class="terms-section">
+            <h2 class="terms-section__title">6. Propiedad intelectual</h2>
+            <p>
+                El código fuente de FIAQ, el modelo entrenado y la interfaz web son
+                propiedad de Ayelen Leiva Falcón, desarrollados en el
+                marco del Proyecto Final de Carrera. El dataset de entrenamiento fue
+                obtenido de <a href="https://www.mdpi.com/2076-3921/13/3/309" target="_blank" rel="noopener noreferrer">
+                    un árticulo científico </a> y su uso se rige por las condiciones
+                establecidas en dicha publicación.
+            </p>
+            <p>
+                Los datos moleculares obtenidos de PubChem son de dominio público
+                bajo la política Open Data del National Institutes of Health de los
+                Estados Unidos.
+            </p>
+        </section>
+
+        <!-- 7. Exención de responsabilidad -->
+        <section class="terms-section">
+            <h2 class="terms-section__title">7. Exención de responsabilidad</h2>
+            <p>
+                FIAQ se provee "tal como está" (as-is), sin garantías de ningún tipo
+                sobre la exactitud, completitud o idoneidad de las predicciones para
+                un propósito específico. La desarrolladora no asumen responsabilidad
+                por decisiones tomadas con base en los resultados del sistema.
+                El uso de FIAQ es responsabilidad exclusiva del usuario.
+            </p>
+        </section>
+
+        <!-- 8. Contacto -->
+        <section class="terms-section">
+            <h2 class="terms-section__title">8. Contacto</h2>
+            <p>
+                Para consultas, reportes de errores o sugerencias relacionadas con
+                el uso de FIAQ, podés comunicarte a través de
+                <a href="mailto:ayelenleiva.f@gmail.com">ayelenleiva.f@gmail.com</a>.
+            </p>
+        </section>
+
+    </div><!-- /.terms-body -->
+
+</div><!-- /.page-wrapper -->
+
+{% endblock %}

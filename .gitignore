@@ -1,0 +1,62 @@
+
+# Datos — ignorar todo, con excepciones explícitas 
+data/*.csv
+data/*.json
+data/*.xlsx
+
+# Estos archivos SÍ se suben (excepciones)
+!data/dataset_limpio_ESTE.csv
+!data/X_features_avanzado1.csv
+!data/y_target_avanzado1.csv
+
+# Modelo — ignorar todo, con excepción del modelo final
+model/*.json
+model/*.joblib
+model/*.db
+model/alertas.py
+model/.sqlite
+
+# Este archivo SÍ se sube (el modelo final)
+!model/datos_modelo_clasificacion09.joblib
+
+# Notebooks 
+*.ipynb
+.ipynb_checkpoints/
+
+# Imágenes 
+*.png
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Entornos virtuales
+env/
+venv/
+.venv/
+
+# Archivos del sistema operativo 
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs 
+.vscode/
+.idea/
+
+# Templates y archivos no utilizados 
+app/templates/registro.html
+app/static/logo.ico
+scripts/01_limpieza_datos.py
+
+# Base de datos de caché 
+*.db
+*.sqlite
+
+# Variables de entorno 
+.env
+.env.local
+.env.production
+
+metadata/

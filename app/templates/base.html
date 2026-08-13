@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Predictor de capacidad antioxidante molecular con IA.">
+    <title>{% block title %}FIAQ{% endblock %}</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo.ico') }}" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- 
+         FONDO DE PARTÍCULAS
+     -->
+    <div id="tsparticles" aria-hidden="true"></div>
+
+    <!--
+         NAVBAR
+     -->
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <a href="/" id="brand-logo">
+                    <span class="brand-hex">⬡</span>
+                    FIAQ
+                </a>
+            </div>
+
+            <div class="navbar-menu">
+                <a href="/" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">Inicio</a>
+                <a href="/quienesSomos" class="nav-link {% if request.endpoint == 'quienesSomos' %}active{% endif %}">Nosotros</a>
+                <a href="/preguntasFrecuentes" class="nav-link {% if request.endpoint == 'preguntasFrecuentes' %}active{% endif %}">Preguntas Frecuentes</a>
+
+                <!-- 
+                     TOGGLE DÍA / NOCHE
+                     El botón cambia data-theme en <html>
+                     y guarda en localStorage.
+                 -->
+                <button
+                    id="theme-toggle"
+                    class="theme-toggle-btn"
+                    aria-label="Cambiar a modo día"
+                    title="Cambiar tema"
+                >
+                    <!-- Ícono SOL: visible en modo oscuro -> click pasa a claro -->
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <!-- Ícono LUNA: visible en modo claro -> click pasa a oscuro -->
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- -
+         CONTENIDO PRINCIPAL
+    -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- 
+         PIE DE PÁGINA
+     -->
+     <footer class="main-footer">
+        <div class="footer-inner">
+            <span class="footer-brand">⬡ FIAQ</span>
+            <nav class="footer-nav" aria-label="Navegación del pie">
+                <a href="/">Inicio</a>
+                <a href="/quienesSomos">Nosotros</a>
+                <a href="/preguntasFrecuentes">Preguntas Frecuentes</a>
+                <a href="/terminos">Términos y condiciones</a>
+            </nav>
+            <p class="footer-copy">&copy; <span id="footer-year"></span> FIAQ — Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- 
+         SCRIPTS
+         ORDEN IMPORTANTÍSIMO:
+         1. Librerías externas primero (tsParticles, Anime.js)
+         2. Script de tema (inline, evita flash)
+         3. Script principal
+     -->
+
+    <!--
+        tsParticles v2 (no v3).
+        La API tsParticles.load({id, options}) corresponde a v2.
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+
+    <!-- Anime.js v3 — MIT License, open source -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+
+    <!--
+        Script de tema INLINE (sin defer/async) para evitar flash.
+        Lee localStorage antes de pintar la página.
+    -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem('qfiaq_theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = saved || (prefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+
+        // Año dinámico en footer
+        document.addEventListener('DOMContentLoaded', function() {
+            const el = document.getElementById('footer-year');
+            if (el) el.textContent = new Date().getFullYear();
+        });
+    </script>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

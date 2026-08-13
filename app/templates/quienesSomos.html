@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}Nosotros — FIAQ{% endblock %}
+
+{% block content %}
+
+<div class="page-wrapper">
+
+    <!-- 
+         HERO INTERNO 
+     -->
+    <section class="page-hero">
+        <span class="page-badge">Sobre el proyecto</span>
+        <h1 class="page-title">Nosotros</h1>
+        <p class="page-subtitle">
+            Un enlace entre la inteligencia artificial y la química,
+            desarrollado desde la universidad argentina.
+        </p>
+    </section>
+
+    <!-- 
+         DESCRIPCIÓN DEL PROYECTO
+     -->
+    <section class="about-section">
+        <div class="about-block about-block--wide">
+            <div class="about-block__icon" aria-hidden="true">⬡</div>
+            <div class="about-block__body">
+                <h2 class="about-block__title">¿Qué es FIAQ?</h2>
+                <p class="about-block__text">
+                    FIAQ es una sitio web que utiliza un modelo de Aprendizaje Automático (Machine Learning)
+                    para predecir la <strong>capacidad antioxidante</strong> de las moléculas
+                    a partir de su estructura química representada en notación SMILES.
+                </p>
+                <p class="about-block__text">
+                    El objetivo es agilizar el screening inicial de compuestos, ofreciendo 
+                    una estimación de su capacidad antioxidante como punto de partida 
+                    para la investigación experimental.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+         CONTEXTO ACADÉMICO
+     -->
+    <section class="about-section about-section--alt">
+        <div class="about-block">
+            <div class="about-block__icon" aria-hidden="true">*</div>
+            <div class="about-block__body">
+                <h2 class="about-block__title">Contexto académico</h2>
+                <p class="about-block__text">
+                    Este proyecto se desarrolló en el marco de la carrera de
+                    <strong>Licenciatura en Sistemas de Información</strong> de la
+                    <strong>Universidad Nacional del Nordeste (UNNE)</strong>,
+                    como parte del Proyecto Final de Carrera. 
+                </p>
+                <p class="about-block__text">
+                    Surge en el ámbito académico, como una iniciativa interdisciplinaria con el objetivo de aplicar técnicas de 
+                    Aprendizaje Automático a un caso concreto en el área de Química. Ofreciendo un recurso accesible para estudiantes, 
+                    investigadores y profesionales del área.
+
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+         EQUIPO
+     -->
+    <section class="about-section">
+        <h2 class="section-title">Desarrolladora</h2>
+        <div class="team-grid">
+
+            <article class="team-card">
+                <div class="team-card__avatar" aria-hidden="true">A</div>
+                <h3 class="team-card__name">Ayelen</h3>
+                <p class="team-card__role">Desarrollo · Modelo IA · Frontend · Backend</p>
+                <p class="team-card__desc">
+                    Responsable del diseño del modelo de clasificación,
+                    la integración con Flask y el desarrollo de la interfaz.
+                </p>
+            </article>
+
+            <!-- Agrego a Margarita?  acá dariamos info de la profesional. Me explico? -->
+
+        </div>
+    </section>
+
+    <!-- 
+         TECNOLOGÍAS
+     -->
+    <section class="about-section about-section--alt">
+        <h2 class="section-title">Tecnologías</h2>
+        <div class="tech-grid">
+
+            <div class="tech-pill">
+                <span class="tech-pill__dot tech-pill__dot--violet"></span>
+                Python
+            </div>
+            <div class="tech-pill">
+                <span class="tech-pill__dot tech-pill__dot--violet"></span>
+                Flask
+            </div>
+            <div class="tech-pill">
+                <span class="tech-pill__dot tech-pill__dot--green"></span>
+                scikit-learn
+            </div>
+            <div class="tech-pill">
+                <span class="tech-pill__dot tech-pill__dot--green"></span>
+                RDKit
+            </div>
+            <div class="tech-pill">
+                <span class="tech-pill__dot tech-pill__dot--green"></span>
+                pandas
+            </div>
+            <div class="tech-pill">
+                <span class="tech-pill__dot tech-pill__dot--violet"></span>
+                tsParticles
+            </div>
+            <div class="tech-pill">
+                <span class="tech-pill__dot tech-pill__dot--violet"></span>
+                Anime.js
+            </div>
+            <div class="tech-pill">
+                <span class="tech-pill__dot tech-pill__dot--neutral"></span>
+                HTML · CSS · JS
+            </div>
+
+        </div>
+    </section>
+
+</div><!-- /.page-wrapper -->
+
+{% endblock %}

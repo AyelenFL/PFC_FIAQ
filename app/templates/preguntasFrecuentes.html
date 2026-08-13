@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+
+{% block title %}Preguntas frecuentes — FIAQ{% endblock %}
+
+{% block content %}
+
+<div class="page-wrapper">
+
+    <!-- 
+         HERO INTERNO
+     -->
+    <section class="page-hero">
+        <span class="page-badge">Ayuda</span>
+        <h1 class="page-title">Preguntas frecuentes</h1>
+        <p class="page-subtitle">
+            Todo lo que necesitás saber sobre FIAQ y la predicción de la capacidad antioxidante.
+        </p>
+    </section>
+
+    <!-- 
+         LAS PRIMERAS PREGUNTAS VISIBLES: sin acordeón
+         Las más básicas y frecuentes, siempre desplegadas.
+     -->
+    <section class="faq-section">
+
+        <div class="faq-visible">
+
+            <div class="faq-item faq-item--open">
+                <div class="faq-item__q">
+                    <span class="faq-item__icon" aria-hidden="true">◈</span>
+                    ¿Qué es FIAQ?
+                </div>
+                <div class="faq-item__a">
+                    FIAQ es una sitio web que predice la capacidad antioxidante
+                    de una molécula a partir de su notación SMILES, CAS o su nombre en ingles, usando
+                    un modelo de aprendizaje automático entrenado con datos experimentales.
+                </div>
+            </div>
+
+            <div class="faq-item faq-item--open">
+                <div class="faq-item__q">
+                    <span class="faq-item__icon" aria-hidden="true">◈</span>
+                    ¿Qué es la notación SMILES?
+                </div>
+                <div class="faq-item__a">
+                    SMILES (Simplified Molecular Input Line Entry System) es una notación
+                    textual estándar que representa estructuras químicas como cadenas de
+                    caracteres. Por ejemplo, <code>CC(=O)O</code> es el Ácido Acético y
+                    <code>CC(=O)Oc1ccccc1C(=O)O</code> es la Aspirina.
+                </div>
+            </div>
+
+            <div class="faq-item faq-item--open">
+                <div class="faq-item__q">
+                    <span class="faq-item__icon" aria-hidden="true">◈</span>
+                    ¿Qué significan las categorías del resultado?
+                </div>
+                <div class="faq-item__a">
+                    El modelo clasifica la capacidad antioxidante en tres niveles:
+                    <ul class="faq-list">
+                        <li><span class="faq-tag faq-tag--high">Alta</span> — La molécula presenta una actividad antioxidante elevada respecto al conjunto de moléculas del modelo.</li>
+                        <li><span class="faq-tag faq-tag--mid">Media</span> — La molécula presenta una actividad antioxidante moderada, intermedia entre las categorías extremas.</li>
+                        <li><span class="faq-tag faq-tag--low">Baja</span> — La molécula presenta una actividad antioxidante reducida en relación al resto de las moléculas del dominio de entrenamiento.</li>
+                    </ul>
+                    El porcentaje de <strong>confianza</strong> indica qué tan seguro está el modelo de esa clasificación.
+                </div>
+            </div>
+
+        </div><!-- /.faq-visible -->
+
+
+        <!-- 
+             EL RESTO DE LAS PREGUNTAS. Se expanden haciendo clic.
+         -->
+        <div class="faq-accordion" id="faq-accordion">
+
+            <details class="faq-item faq-item--collapsible">
+                <summary class="faq-item__q">
+                    <span class="faq-item__icon" aria-hidden="true">◈</span>
+                    ¿Qué tan preciso es el modelo?
+                    <span class="faq-item__arrow" aria-hidden="true">›</span>
+                </summary>
+                <div class="faq-item__a">
+                    El modelo fue entrenado y validado con un conjunto de datos experimental
+                    de capacidad antioxidante medida por el método DPPH y normalizada con TEAC. La precisión varía
+                    según la similitud de la molécula consultada con las del conjunto de
+                    entrenamiento. El porcentaje de confianza que acompaña cada predicción
+                    es un buen indicador de la certeza del resultado.
+                </div>
+            </details>
+
+            <details class="faq-item faq-item--collapsible">
+                <summary class="faq-item__q">
+                    <span class="faq-item__icon" aria-hidden="true">◈</span>
+                    ¿Puedo ingresar el nombre de la molécula en lugar de SMILES?
+                    <span class="faq-item__arrow" aria-hidden="true">›</span>
+                </summary>
+                <div class="faq-item__a">
+                    Sí. El modelo también acepta el nombres en inglés de las moléculas (como "phenol", "caffeine", "quercetin"),
+                    como también el número CAS. El sistema internamente convierte el nombre o CAS a SMILES 
+                    usando una base de datos química antes de realizar la predicción. 
+                </div>
+            </details>
+
+            <details class="faq-item faq-item--collapsible">
+                <summary class="faq-item__q">
+                    <span class="faq-item__icon" aria-hidden="true">◈</span>
+                    ¿Qué descriptores moleculares usa el modelo?
+                    <span class="faq-item__arrow" aria-hidden="true">›</span>
+                </summary>
+                <div class="faq-item__a">
+                    El modelo utiliza descriptores fisicoquímicos calculados con RDKit,
+                    incluyendo propiedades como peso molecular, logP, número de donores
+                    y aceptores de puentes de hidrógeno, área de superficie polar (TPSA)
+                    y descriptores de anillos aromáticos, entre otros.
+                </div>
+            </details>
+
+            <details class="faq-item faq-item--collapsible">
+                <summary class="faq-item__q">
+                    <span class="faq-item__icon" aria-hidden="true">◈</span>
+                    ¿Las predicciones se guardan?
+                    <span class="faq-item__arrow" aria-hidden="true">›</span>
+                </summary>
+                <div class="faq-item__a">
+                    Actualmente las predicciones no se almacenan.
+                    Más adelante, se realizarán mejoras para permitir el almacenamiento de predicciones. 
+                </div>
+            </details>
+
+            <details class="faq-item faq-item--collapsible">
+                <summary class="faq-item__q">
+                    <span class="faq-item__icon" aria-hidden="true">◈</span>
+                    ¿Cómo se interpreta el termómetro?
+                    <span class="faq-item__arrow" aria-hidden="true">›</span>
+                </summary>
+                <div class="faq-item__a">
+                    El termómetro tiene tres zonas: roja (Baja), amarilla (Media) y verde
+                    (Alta). El nivel de relleno dentro de cada zona representa la confianza
+                    del modelo — una predicción "Alta" con 95% de confianza llena casi
+                    toda la zona verde, mientras que una con 55% solo la llena a la mitad.
+                </div>
+            </details>
+
+        </div><!-- /.faq-accordion -->
+
+    </section><!-- /.faq-section -->
+
+</div><!-- /.page-wrapper -->
+
+{% endblock %}
+
+{% block extra_js %}
+<!-- JS del acordeón FAQ: animación del abrir/cerrar-->
+<script>
+(function () {
+    'use strict';
+
+    /* Anima el abrir/cerrar de un <details> sin salto brusco */
+    function animateDetails(el, opening) {
+        const body = el.querySelector('.faq-item__a');
+        if (!body) return;
+
+        if (el._anim) el._anim.cancel();
+
+        if (opening) el.open = true;
+
+        el._anim = body.animate(
+            [
+                { height: opening ? '0px' : body.scrollHeight + 'px', opacity: opening ? 0 : 1 },
+                { height: opening ? body.scrollHeight + 'px' : '0px', opacity: opening ? 1 : 0 },
+            ],
+            { duration: 280, easing: 'cubic-bezier(0.4,0,0.2,1)', fill: 'forwards' }
+        );
+
+        el._anim.onfinish = () => {
+            if (!opening) el.open = false;
+            body.style.height = '';
+            body.style.opacity = '';
+            el._anim = null;
+        };
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const items = document.querySelectorAll('.faq-item--collapsible');
+
+        items.forEach(item => {
+            const summary = item.querySelector('summary');
+            if (!summary) return;
+
+            summary.addEventListener('click', e => {
+                e.preventDefault();
+
+                /* Cerrar el resto */
+                items.forEach(other => {
+                    if (other !== item && other.open) animateDetails(other, false);
+                });
+
+                animateDetails(item, !item.open);
+            });
+        });
+    });
+})();
+</script>
+{% endblock %}
