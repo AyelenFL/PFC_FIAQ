@@ -48,7 +48,7 @@ desktop.ini
 # Templates y archivos no utilizados 
 app/templates/registro.html
 app/static/logo.ico
-scripts/01_limpieza_datos.py
+#scripts/01_limpieza_datos.py
 
 # Base de datos de caché 
 *.db
