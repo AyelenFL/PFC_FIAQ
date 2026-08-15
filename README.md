@@ -1,4 +1,11 @@
-
+---
+title: FIAQ
+emoji: ⬡
+colorFrom: purple
+colorTo: green
+sdk: docker
+pinned: false
+---
 # ⬡ FIAQ — Modelo de IA capaz de predecir la capacidad antioxidante de moléculas
 
 Aplicación web para la predicción de la capacidad antioxidante de moléculas
@@ -75,33 +82,25 @@ docker run -p 7860:7860 fiaq
 ## Estructura del proyecto
 
 ```
-pfc_fiaq/
-├── app/
-│   ├── static/
-│   │    ├── logo.ico
-│   │    ├── script.js
-│   │    └── style.css
-│   ├── templates/           # HTML (Jinja2)
-│   │    ├── base.html
-│   │    ├── index.html
-│   │    ├── quienesSomos.html
-│   │    ├── preguntasFrecuentes.html
-│   │    └── terminos.html
-│   └── main.py                  # Rutas Flask
-├── data
-│   ├── dataset_limpio...
-│   ├── X_feactures   
-│   └── y_target
-├── model
-│   ├── handler.py              # Lógica del modelo 
-│   ├── cache_smiles.py         # Caché SQLite para PubChem
-│   └── datos_modelo_clasificacion09.joblib     # Modelo entrenado serializado
-├── scripts
-│   ├── 01_limpieza_datos.py 
-│   ├── 02_ingenieria_características.py
-│   └── 03_entrenemiento_modelo
-├──README.md
-│
+pfc_fiaq/           
+├── main.py
+├── handler.py
+├── cache_smiles.py
+├── datos_modelo_clasificacion09.joblib
+├── requirements.txt
+├── Dockerfile
+├── static/
+│   ├── logo.ico
+│   ├── script.js
+│   └── style.css
+├── templates/
+│   ├── base.html
+│   ├── index.html
+│   ├── quienesSomos.html
+│   ├── preguntasFrecuentes.html
+│   └── terminos.html
+├── data/
+└── scripts/
 ```
 
 ---
