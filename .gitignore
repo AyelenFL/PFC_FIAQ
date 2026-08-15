@@ -9,15 +9,6 @@ data/*.xlsx
 !data/X_features_avanzado1.csv
 !data/y_target_avanzado1.csv
 
-# Modelo — ignorar todo, con excepción del modelo final
-model/*.json
-model/*.joblib
-model/*.db
-model/alertas.py
-model/.sqlite
-
-# Este archivo SÍ se sube (el modelo final)
-!model/datos_modelo_clasificacion09.joblib
 
 # Notebooks 
 *.ipynb
@@ -46,8 +37,9 @@ desktop.ini
 .idea/
 
 # Templates y archivos no utilizados 
-app/templates/registro.html
-app/static/logo.ico
+templates/registro.html
+static/logo.ico
+alertas.py
 #scripts/01_limpieza_datos.py
 
 # Base de datos de caché 
@@ -59,4 +51,6 @@ app/static/logo.ico
 .env.local
 .env.production
 
+# Carpetas 
 metadata/
+model/

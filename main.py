@@ -15,7 +15,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 #  Importación del Módulo de IA 
 # Ahora que la ruta está configurada, podemos importar el handler.
 try:
-    from model import handler as model_handler
+    import handler as model_handler
 except ImportError as e:
     print(f"Error real de importación: {e}")
     sys.exit(1)

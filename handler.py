@@ -20,7 +20,7 @@ from rdkit import Chem
 from rdkit.Chem import Descriptors, Lipinski, Crippen, QED
 
 # Importaciones para la caché de SMILES
-from .cache_smiles import inicializar_cache, buscar_smiles_con_cache
+from cache_smiles import inicializar_cache, buscar_smiles_con_cache
 
 
 # ***** 1-> CONSTANTES Y CONFIGURACIÓN *****
