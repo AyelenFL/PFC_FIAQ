@@ -46,6 +46,5 @@ README.md
 
 # Templates y archivos no utilizados 
 templates/registro.html
-static/logo.ico
 metadata/
 alertas.py

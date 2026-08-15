@@ -38,7 +38,6 @@ desktop.ini
 
 # Templates y archivos no utilizados 
 templates/registro.html
-static/logo.ico
 alertas.py
 #scripts/01_limpieza_datos.py
 
