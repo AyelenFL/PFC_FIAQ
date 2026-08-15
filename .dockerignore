@@ -1,0 +1,51 @@
+# Variables de entorno 
+.env
+.env.local
+.env.production
+
+# Datos de entrenamiento 
+data/
+
+# Scripts de entrenamiento
+scripts/
+
+# Notebooks 
+*.ipynb
+.ipynb_checkpoints/
+
+# Modelos de prueba: solo queda el final
+# El modelo final datos_modelo_clasificacion09.joblib SÍ entra.
+# Los demás .joblib que hayan quedado en la raíz, no.
+model/ 
+
+# Base de datos de caché 
+*.db
+*.sqlite
+
+# Python 
+__pycache__/
+*.pyc
+*.pyo
+
+# Git 
+.git/
+.gitignore
+
+# Archivos del sistema operativo 
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs 
+.vscode/
+.idea/
+
+# Documentación 
+README.md
+*.md
+
+# Templates y archivos no utilizados 
+templates/registro.html
+static/logo.ico
+metadata/
+alertas.py
