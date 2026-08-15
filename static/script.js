@@ -355,7 +355,7 @@ function initForm() {
         const inputValue = smilesInput.value.trim();
  
         if (!inputValue) {
-            showError('Por favor ingresá una molécula en formato SMILES.');
+            showError('Por favor, ingresá una molécula en un formato válido (SMILES, nombre en inglés, CAS).');
             return;
         }
  
