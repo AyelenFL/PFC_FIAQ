@@ -1,11 +1,3 @@
----
-title: FIAQ
-emoji: ⬡
-colorFrom: purple
-colorTo: green
-sdk: docker
-pinned: false
----
 # ⬡ FIAQ — Modelo de IA capaz de predecir la capacidad antioxidante de moléculas
 
 Aplicación web para la predicción de la capacidad antioxidante de moléculas
@@ -51,7 +43,7 @@ dentro del dominio de entrenamiento. No reemplazan la validación experimental.
 | Frontend | HTML · CSS · JavaScript |
 | Animaciones | tsParticles · Anime.js |
 | Datos externos | PubChem API |
-| Despliegue | Docker · Hugging Face Spaces |
+| Despliegue | Docker · Render |
 
 ---
 
