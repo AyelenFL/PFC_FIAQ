@@ -11,33 +11,37 @@
 
 /*  
    1. TEMA DÍA / NOCHE
-   
    El atributo data-theme en <html> controla todas las variables CSS.
    Se inicializa antes de DOMContentLoaded (inline en base.html)
    para evitar flash; acá solo se maneja el botón de toggle.
  */
 
 function initThemeToggle() {
-    const btn  = document.getElementById('theme-toggle');
-    const html = document.documentElement;
-
-    if (!btn) return;
-
-    btn.addEventListener('click', () => {
-        const current = html.getAttribute('data-theme') || 'dark';
-        const next    = current === 'dark' ? 'light' : 'dark';
-
-        html.setAttribute('data-theme', next);
-        localStorage.setItem('qfiaq_theme', next);
-
-        // Actualizar aria-label
-        btn.setAttribute(
-            'aria-label',
-            next === 'dark' ? 'Cambiar a modo día' : 'Cambiar a modo oscuro'
-        );
-
-        // Recargar partículas con colores del nuevo tema
-        reloadParticles();
+    /* Seleccionar ambos botones: desktop y mobile */
+    const btns = [
+        document.getElementById('theme-toggle'),
+        document.getElementById('theme-toggle-mobile'),
+    ].filter(Boolean); /* filter(Boolean) descarta los null si alguno no existe */
+ 
+    if (!btns.length) return;
+ 
+    /* Aplicar el mismo handler a ambos */
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme') || 'dark';
+            const next    = current === 'dark' ? 'light' : 'dark';
+ 
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('qfiaq_theme', next);
+ 
+            /* Actualizar aria-label en ambos botones */
+            btns.forEach(b => b.setAttribute(
+                'aria-label',
+                next === 'dark' ? 'Cambiar a modo día' : 'Cambiar a modo oscuro'
+            ));
+ 
+            reloadParticles();
+        });
     });
 }
 
@@ -521,3 +525,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('[FIAQ] App inicializada correctamente.');
 });
+
+
+
+/* MENÚ HAMBURGUESA MOBILE
+   Maneja la apertura/cierre del menú mobile
+   - Alterna las clases .is-open en el botón y en el menú
+   - Actualiza aria-expanded y aria-hidden para accesibilidad
+   - Cierra el menú al hacer click en un link interno
+   - Cierra el menú al presionar Escape
+   - Cierra el menú al hacer resize a desktop
+ */
+ 
+(function initMobileMenu() {
+    const btn       = document.getElementById('mobile-menu-btn');
+    const menu      = document.getElementById('mobile-menu');
+    const links     = menu ? menu.querySelectorAll('.mobile-menu__link') : [];
+ 
+    if (!btn || !menu) return;
+ 
+    /* Abrir / cerrar al click en el hexágono */
+    btn.addEventListener('click', () => {
+        const isOpen = btn.classList.contains('is-open');
+ 
+        btn.classList.toggle('is-open');
+        menu.classList.toggle('is-open');
+ 
+        /* Actualizar atributos de accesibilidad */
+        btn.setAttribute('aria-expanded', String(!isOpen));
+        menu.setAttribute('aria-hidden',  String(isOpen));
+        btn.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
+    });
+ 
+    /* Cerrar al hacer click en cualquier link del menú */
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            btn.classList.remove('is-open');
+            menu.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+            menu.setAttribute('aria-hidden',  'true');
+            btn.setAttribute('aria-label', 'Abrir menú');
+        });
+    });
+ 
+    /* Cerrar al presionar Escape */
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && btn.classList.contains('is-open')) {
+            btn.classList.remove('is-open');
+            menu.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+            menu.setAttribute('aria-hidden',  'true');
+            btn.setAttribute('aria-label', 'Abrir menú');
+            btn.focus();
+        }
+    });
+ 
+    /* Cerrar si el usuario agranda la ventana a desktop */
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && btn.classList.contains('is-open')) {
+            btn.classList.remove('is-open');
+            menu.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+            menu.setAttribute('aria-hidden',  'true');
+        }
+    }, { passive: true });
+ 
+})();

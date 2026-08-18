@@ -34,10 +34,10 @@
                 </a>
             </div>
 
-            <div class="navbar-menu">
+            <div class="navbar-menu" id="navbar-menu-desktop"> 
                 <a href="/" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">Inicio</a>
                 <a href="/quienesSomos" class="nav-link {% if request.endpoint == 'quienesSomos' %}active{% endif %}">Nosotros</a>
-                <a href="/preguntasFrecuentes" class="nav-link {% if request.endpoint == 'preguntasFrecuentes' %}active{% endif %}">Preguntas Frecuentes</a>
+                <a href="/preguntasFrecuentes" class="nav-link {% if request.endpoint == 'preguntasFrecuentes' %}active{% endif %}">Preguntas frecuentes</a>
 
                 <!-- 
                      TOGGLE DÍA / NOCHE
@@ -69,7 +69,68 @@
                 </button>
 
             </div>
+
+            <div class="navbar-mobile-control">
+
+                <!-- 
+                     TOGGLE DÍA / NOCHE
+                 -->
+                <button
+                    id="theme-toggle-mobile"
+                    class="theme-toggle-btn"
+                    aria-label="Cambiar a modo día"
+                    title="Cambiar tema"
+                >
+                    <!-- Ícono SOL: visible en modo oscuro -> click pasa a claro -->
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <!-- Ícono LUNA: visible en modo claro -> click pasa a oscuro -->
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+
+
+             <!-- BOTÓN HAMBURGUESA -->
+             <button
+                id="mobile-menu-btn"
+                class="mobile-menu-btn"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+             >
+                <span class="mobile-menu-btn__hex" aria-hidden="true">⬡</span>
+             </button>
+
+            </div>
+ 
         </nav>
+ 
+        <!-- MENÚ MOBILE DESPLEGABLE -->
+        <div
+            id="mobile-menu"
+            class="mobile-menu"
+            aria-hidden="true"
+            role="dialog"
+            aria-label="Menú de navegación"
+         >
+            <nav class="mobile-menu__nav">
+                <a href="/" class="mobile-menu__link {% if request.endpoint == 'index' %}active{% endif %}">Inicio</a>
+                <a href="/quienesSomos" class="mobile-menu__link {% if request.endpoint == 'quienesSomos' %}active{% endif %}">Nosotros</a>
+                <a href="/preguntasFrecuentes" class="mobile-menu__link {% if request.endpoint == 'preguntasFrecuentes' %}active{% endif %}">Preguntas frecuentes</a>
+            </nav>
+            
+          </div>
+
     </header>
 
     <!-- -

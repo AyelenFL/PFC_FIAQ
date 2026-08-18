@@ -66,6 +66,14 @@
     --thermo-mark-mid:   rgba(255, 255, 255, 0.70);
     --thermo-label:      rgba(255, 255, 255, 0.65);
     --thermo-indicator:  #ffffff;
+
+    /* Espaciado — escala de 4px */
+    --space-2:  0.5rem;
+    --space-3:  0.75rem;
+    --space-4:  1rem;
+    --space-5:  1.25rem;
+    --space-6:  1.5rem;
+    --space-8:  2rem;
 }
 
 /*  
@@ -1277,5 +1285,144 @@ input, button, a, select, textarea {
     .terms-alert {
         flex-direction: column;
         gap: var(--space-2);
+    }
+}
+
+ /* 13. MENÚ "HAMBURGUESA" MOBILE (hexágono ⬡)
+   El botón solo aparece en pantallas pequeñas.
+ */
+ 
+/* Botón hexágono */
+.mobile-menu-btn {
+    display: none;          /* oculto en desktop */
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg-raised);
+    color: var(--violet-light);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.3s;
+    flex-shrink: 0;
+}
+ 
+.mobile-menu-btn:hover {
+    background: var(--violet-glow);
+    border-color: var(--violet);
+}
+ 
+/* El hexágono rota cuando el menú está abierto */
+.mobile-menu-btn__hex {
+    font-size: 1.4rem;
+    line-height: 1;
+    display: block;
+    transition: transform 0.35s cubic-bezier(.34,1.56,.64,1),
+                color 0.2s;
+    color: var(--violet);
+    filter: drop-shadow(0 0 6px var(--violet-glow));
+}
+ 
+/* Estado abierto: hexágono rotado */
+.mobile-menu-btn.is-open .mobile-menu-btn__hex {
+    transform: rotate(30deg);
+    color: var(--green);
+    filter: drop-shadow(0 0 8px var(--green-glow));
+}
+ 
+/* Menú desplegable mobile */
+.mobile-menu {
+    /* Oculto por defecto con max-height: 0 para animar suavemente */
+    max-height: 0;
+    overflow: hidden;
+    background: var(--nav-bg);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border-bottom: 0px solid transparent;
+    transition:
+        max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.25s ease;
+}
+ 
+/* Estado abierto */
+.mobile-menu.is-open {
+    max-height: 280px;
+    border-bottom: 1px solid var(--border);
+}
+ 
+.mobile-menu__nav {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1.5rem 1rem;
+    gap: 0.15rem;
+}
+ 
+.mobile-menu__link {
+    display: block;
+    padding: 0.65rem 0.75rem;
+    border-radius: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+}
+ 
+.mobile-menu__link:hover,
+.mobile-menu__link.active {
+    background: var(--bg-raised);
+    color: var(--text);
+}
+ 
+
+.mobile-menu__link--cta:hover {
+    background: var(--violet-glow);
+    border-color: var(--violet);
+    color: var(--violet-light);
+}
+ 
+/* RESPONSIVE: activar mobile en pantallas pequeñas */
+@media (max-width: 768px) {
+ 
+    /* Ocultar el menú de desktop */
+    #navbar-menu-desktop {
+        display: none;
+    }
+ 
+    /* Mostrar el botón hexágono */
+    .mobile-menu-btn {
+        display: flex;
+    }
+ 
+    /* El navbar queda solo con logo y el botón hexágono */
+    .navbar {
+        padding: 0.7rem 1.2rem;
+    }
+}
+
+/* 14. TOGGLE DÍA/NOCHE EN MOBILE */
+ 
+/* Wrapper que agrupa toggle y botón ⬡ — > solo visible en mobile */
+.navbar-mobile-control {
+    display: none;          /* oculto en desktop */
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+ 
+@media (max-width: 768px) {
+ 
+    /* Mostrar el wrapper con toggle + ⬡ */
+    .navbar-mobile-control {
+        display: flex;
+    }
+ 
+    /* El navbar queda: logo |  | toggle + ⬡ */
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 }
